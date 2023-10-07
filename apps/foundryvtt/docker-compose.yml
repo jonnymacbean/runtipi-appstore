@@ -5,8 +5,8 @@ services:
     container_name: foundryvtt
     image: felddy/foundryvtt:10.303.0
     environment:
-      - FOUNDRY_RELEASE_URL=${FOUNDRY_RELEASE_URL}
-      - FOUNDRY_LICENSE_KEY=${FOUNDRY_LICENSE_KEY}
+      - FOUNDRY_USERNAME=${FOUNDRY_USERNAME}
+      - FOUNDRY_PASSWORD=${FOUNDRY_PASSWORD}
       - FOUNDRY_ADMIN_KEY=${FOUNDRY_ADMIN_KEY}
     ports:
       - ${APP_PORT}:30000

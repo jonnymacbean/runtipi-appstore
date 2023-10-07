@@ -16,15 +16,15 @@
   "form_fields": [
     {
       "type": "text",
-      "label": "Temporary release URL",
+      "label": "Foundry username",
       "required": true,
-      "env_variable": "FOUNDRY_RELEASE_URL"
+      "env_variable": "FOUNDRY_USERNAME"
     },
     {
-      "type": "text",
-      "label": "Foundry license key",
+      "type": "password",
+      "label": "Foundry passsword",
       "required": false,
-      "env_variable": "FOUNDRY_LICENSE_KEY"
+      "env_variable": "FOUNDRY_PASSWORD"
     },
     {
       "type": "password",
