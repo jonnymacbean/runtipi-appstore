@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  foundryvtt:
+    container_name: foundryvtt
+    image: felddy/foundryvtt:10.303.0
+    environment:
+      - FOUNDRY_RELEASE_URL=${FOUNDRY_RELEASE_URL}
+      - FOUNDRY_LICENSE_KEY=${FOUNDRY_LICENSE_KEY}
+      - FOUNDRY_ADMIN_KEY=${FOUNDRY_ADMIN_KEY}
+    ports:
+      - ${APP_PORT}:30000
+    volumes:
+      - ${APP_DATA_DIR}/data:/data
+    restart: unless-stopped
+    networks:
+      - tipi_main_network
+    labels:
+      # Main
+      traefik.enable: true
+      traefik.http.middlewares.foundryvtt-web-redirect.redirectscheme.scheme: https
+      traefik.http.services.foundryvtt.loadbalancer.server.port: 8080
+      # Web
+      traefik.http.routers.foundryvtt-insecure.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.foundryvtt-insecure.entrypoints: web
+      traefik.http.routers.foundryvtt-insecure.service: foundryvtt
+      traefik.http.routers.foundryvtt-insecure.middlewares: foundryvtt-web-redirect
+      # Websecure
+      traefik.http.routers.foundryvtt.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.foundryvtt.entrypoints: websecure
+      traefik.http.routers.foundryvtt.service: foundryvtt
+      traefik.http.routers.foundryvtt.tls.certresolver: myresolver
+      # Local domain
+      traefik.http.routers.foundryvtt-local-insecure.rule: Host(`foundryvtt.${LOCAL_DOMAIN}`)
+      traefik.http.routers.foundryvtt-local-insecure.entrypoints: web
+      traefik.http.routers.foundryvtt-local-insecure.service: foundryvtt
+      traefik.http.routers.foundryvtt-local-insecure.middlewares: foundryvtt-web-redirect
+      # Local domain secure
+      traefik.http.routers.foundryvtt-local.rule: Host(`foundryvtt.${LOCAL_DOMAIN}`)
+      traefik.http.routers.foundryvtt-local.entrypoints: websecure
+      traefik.http.routers.foundryvtt-local.service: foundryvtt
+      traefik.http.routers.foundryvtt-local.tls: true

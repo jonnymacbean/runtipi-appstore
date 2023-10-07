@@ -1,0 +1,36 @@
+{
+  "$schema": "../schema.json",
+  "name": "Foundry VTT",
+  "port": 8309,
+  "available": true,
+  "exposable": true,
+  "id": "foundryvtt",
+  "tipi_version": 1,
+  "version": "10.303.0",
+  "categories": ["media"],
+  "description": "Self hosted virtual tabletop",
+  "short_desc": "Self hosted virtual tabletop",
+  "author": "Foundry",
+  "source": "https://github.com/felddy/foundryvtt-docker",
+  "website": "https://foundryvtt.com",
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Temporary release URL",
+      "required": true,
+      "env_variable": "FOUNDRY_RELEASE_URL"
+    },
+    {
+      "type": "text",
+      "label": "Foundry license key",
+      "required": false,
+      "env_variable": "FOUNDRY_LICENSE_KEY"
+    },
+    {
+      "type": "password",
+      "label": "Admin password",
+      "required": false,
+      "env_variable": "FOUNDRY_ADMIN_KEY"
+    }
+  ]
+}
