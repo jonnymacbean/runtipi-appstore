@@ -1,0 +1,30 @@
+{
+  "$schema": "../schema.json",
+  "name": "Wger",
+  "available": true,
+  "exposable": true,
+  "port": 8922,
+  "id": "wger",
+  "tipi_version": 20,
+  "version": "5.11.0",
+  "categories": ["media", "social"],
+  "description": "wger Workout Manager is a free, open source web application that helps you manage your personal workouts, weight and diet plans.",
+  "short_desc": "Workout manager for workouts, weight and diet plans",
+  "author": "wger-project",
+  "source": "https://github.com/wger-project/wger",
+  "form_fields": [
+    {
+      "type": "boolean",
+      "label": "Allow user registration",
+      "required": true,
+      "env_variable": "REGISTRATION"
+    },
+    {
+      "type": "boolean",
+      "label": "Allow guest users",
+      "required": true,
+      "env_variable": "GUESTS"
+    }
+  ],
+  "supported_architectures": ["amd64"]
+}
